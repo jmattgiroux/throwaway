@@ -17,18 +17,22 @@ export class AppComponent {
   mergePdfs() {
     const pdf1 = new Observable(observer => {
       merger.add('https://yes-pdf.com/electronic-book/1906')
+        .then((res) => observer.next(res))
     })
 
     const pdf2 = new Observable(observer => {
       merger.add('https://yes-pdf.com/electronic-book/1906')
+        .then((res) => observer.next(res))
     })
 
     const pdf3 = new Observable(observer => {
       merger.add('https://yes-pdf.com/electronic-book/1906')
+        .then((res) => observer.next(res))
     })
 
     const save = new Observable(observer => {
       merger.add('https://yes-pdf.com/electronic-book/1906')
+        .then((res) => observer.next(res))
     })
 
     combineLatest([pdf1, pdf2, pdf3, save]).subscribe(([pdf1, pdf2, pdf3, save]) => {
