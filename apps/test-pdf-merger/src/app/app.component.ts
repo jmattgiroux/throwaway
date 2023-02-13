@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import PDFMerger from 'pdf-merger-js';
+
+const merger = new PDFMerger()
 
 @Component({
   selector: 'throwaway-root',
