@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import PDFMerger from 'pdf-merger-js';
+import {combineLatest, Observable} from 'rxjs';
 
 const merger = new PDFMerger()
 
@@ -13,11 +14,30 @@ const merger = new PDFMerger()
 export class AppComponent {
   title = 'test-pdf-merger';
 
-  async mergePdfs() {
-    await merger.add('https://yes-pdf.com/electronic-book/1906')
-    await merger.add('https://yes-pdf.com/electronic-book/4500')
-    await merger.add('https://yes-pdf.com/electronic-book/4497')
-    return merger.save("mynewfile.pdf")
+  mergePdfs() {
+    const pdf1 = new Observable(observer => {
+      merger.add('https://yes-pdf.com/electronic-book/1906')
+    })
+
+    const pdf2 = new Observable(observer => {
+      merger.add('https://yes-pdf.com/electronic-book/1906')
+    })
+
+    const pdf3 = new Observable(observer => {
+      merger.add('https://yes-pdf.com/electronic-book/1906')
+    })
+
+    const save = new Observable(observer => {
+      merger.add('https://yes-pdf.com/electronic-book/1906')
+    })
+
+    combineLatest([pdf1, pdf2, pdf3, save]).subscribe(([pdf1, pdf2, pdf3, save]) => {
+      console.log('pdf1', pdf1)
+    }, error => {
+      console.log('error', error)
+    })
+
+
   }
 }
 
